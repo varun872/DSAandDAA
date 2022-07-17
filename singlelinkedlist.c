@@ -108,6 +108,23 @@ void delete(Root *rt,int e)
     }
 }
 
+void reverse(Root *rt)
+{
+    Node *curr,*temp,*prev;
+    curr=rt->head;
+    temp=rt->head->next;
+    prev=NULL;
+    while(temp!=NULL)
+    {
+        curr->next=prev;
+        prev=curr;
+        curr=temp;
+        temp=temp->next;
+    }
+    curr->next=prev;
+    rt->head=curr;
+}
+
 void display(Root *rt)
 {
     Node *temp;
@@ -127,7 +144,8 @@ int main()
     orderedinsert(&rt,1);
     orderedinsert(&rt,2);
     orderedinsert(&rt,4);
-    // delete(&rt,3);
+    delete(&rt,3);
+    reverse(&rt);
     display(&rt);
     printf("\n");
     return 0;
